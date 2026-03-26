@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristian Bastías | Portafolio</title>
+    <!-- Modern Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <!-- Headers/Nav -->
+    <header class="navbar">
+        <div class="container nav-content">
+            <a href="#" class="logo">Cristian<span class="highlight">B.</span></a>
+            <button class="mobile-menu-btn" aria-label="Abrir menú" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav class="nav-links">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#sobre-mi" class="nav-link">Sobre Mí</a>
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#proyectos" class="nav-link">Proyectos</a>
+                <a href="#experiencia" class="nav-link">Experiencia</a>
+                <a href="#contacto" class="nav-link btn-contact">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="hero">
+            <div class="container hero-content fade-in-up">
+                <span class="greeting">Hola, soy</span>
+                <h1 class="main-title">Cristian Bastías Cid</h1>
+                <h2 class="subtitle">Ingeniero en Informática | Docente | Desarrollador de Sistemas</h2>
+                <p class="hero-description text-muted">
+                    Soy Ingeniero en Ejecución Informática y docente de programación, con experiencia en desarrollo de sistemas, formación de estudiantes y gestión de proyectos tecnológicos. Mi enfoque está en facilitar el acceso a la tecnología, promoviendo el aprendizaje práctico y la resolución de problemas reales.
+                </p>
+                <div class="hero-actions">
+                    <a href="#contacto" class="btn btn-primary">Hablemos</a>
+                    <a href="#proyectos" class="btn btn-outline">Ver Proyectos</a>
+                </div>
+            </div>
+            
+            <div class="scroll-indicator">
+                <div class="mouse"></div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="sobre-mi" class="about">
+            <div class="container reveals">
+                <h2 class="section-title">Sobre <span class="highlight">Mí</span></h2>
+                <div class="about-grid">
+                    <div class="about-text glass-card">
+                        <p class="mb-4">Soy profesional del área informática con experiencia en:</p>
+                        <ul class="skills-list">
+                            <li>Desarrollo de aplicaciones web</li>
+                            <li>Programación orientada a objetos</li>
+                            <li>Soporte técnico a usuarios</li>
+                            <li>Implementación de soluciones tecnológicas educativas</li>
+                        </ul>
+                        <p class="mt-4 mb-4">Además, me desempeño como docente en enseñanza media técnico-profesional, formando estudiantes en áreas como programación, bases de datos y desarrollo de software.</p>
+                        <div class="purpose-box">
+                            <span class="box-icon">💡</span>
+                            <div>
+                                <h3>Mi propósito:</h3>
+                                <p>Acercar la tecnología a las personas y formar profesionales capaces de enfrentar desafíos reales del mundo digital.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicios" class="services">
+            <div class="container reveals">
+                <h2 class="section-title">Mis <span class="highlight">Servicios</span></h2>
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card glass-card">
+                        <div class="service-icon">💻</div>
+                        <h3>Desarrollo Web</h3>
+                        <ul class="clean-list">
+                            <li>Creación de páginas web para emprendimientos</li>
+                            <li>Sistemas personalizados (frontend y backend)</li>
+                            <li>Optimización y mejoras de sitios existentes</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-card glass-card">
+                        <div class="service-icon">🧑‍🏫</div>
+                        <h3>Capacitación y Formación</h3>
+                        <ul class="clean-list">
+                            <li>Clases de programación (básico a intermedio)</li>
+                            <li>Talleres de alfabetización digital</li>
+                            <li>Formación en herramientas tecnológicas</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-card glass-card">
+                        <div class="service-icon">🖥️</div>
+                        <h3>Soporte Técnico</h3>
+                        <ul class="clean-list">
+                            <li>Diagnóstico y solución de problemas</li>
+                            <li>Instalación y configuración de equipos</li>
+                            <li>Optimización de sistemas</li>
+                        </ul>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="service-card glass-card">
+                        <div class="service-icon">📊</div>
+                        <h3>Proyectos Tecnológicos</h3>
+                        <ul class="clean-list">
+                            <li>Desarrollo de soluciones educativas</li>
+                            <li>Sistemas de gestión</li>
+                            <li>Aplicaciones móviles básicas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="proyectos" class="projects">
+            <div class="container reveals">
+                <h2 class="section-title"><span class="highlight">Proyectos</span> Destacados</h2>
+                <div class="projects-grid" id="github-projects">
+                    <div class="text-center" style="grid-column: 1 / -1; color: var(--text-muted); padding: 2rem;">
+                        <p>Cargando proyectos desde GitHub...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience & Skills Section -->
+        <section id="experiencia" class="experience-skills">
+            <div class="container reveals">
+                <div class="duo-grid">
+                    <!-- Experience -->
+                    <div class="experience">
+                        <h2 class="section-title">Mi <span class="highlight">Experiencia</span></h2>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <span class="timeline-dot"></span>
+                                <h3>Docente de Programación</h3>
+                                <ul class="text-muted clean-list timeline-list">
+                                    <li>Enseñanza de lógica de programación, Java, desarrollo web</li>
+                                    <li>Creación de material educativo y guías prácticas</li>
+                                    <li>Evaluación de proyectos tecnológicos</li>
+                                </ul>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="timeline-dot"></span>
+                                <h3>Desarrollador Independiente</h3>
+                                <ul class="text-muted clean-list timeline-list">
+                                    <li>Desarrollo de soluciones a medida</li>
+                                    <li>Implementación de sistemas web</li>
+                                    <li>Asesoría tecnológica</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="skills">
+                        <h2 class="section-title">Súper <span class="highlight">Habilidades</span></h2>
+                        <div class="skills-wrapper glass-card">
+                            <h4 class="skills-category">Técnicas 🧠</h4>
+                            <div class="skills-tags">
+                                <span class="skill-tag">Java</span>
+                                <span class="skill-tag">PSeInt</span>
+                                <span class="skill-tag">PHP</span>
+                                <span class="skill-tag">HTML</span>
+                                <span class="skill-tag">CSS</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">Bases de Datos (MySQL, Firebase)</span>
+                                <span class="skill-tag">Backend</span>
+                                <span class="skill-tag">Frontend</span>
+                            </div>
+                            
+                            <h4 class="skills-category mt-4">Blandas & Generales 🤝</h4>
+                            <div class="skills-tags">
+                                <span class="skill-tag outline">Resolución de problemas</span>
+                                <span class="skill-tag outline">Trabajo en equipo</span>
+                                <span class="skill-tag outline">Adaptación a nuevas tecnologías</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="contact">
+            <div class="container reveals">
+                <div class="contact-wrapper glass-card">
+                    <div class="contact-info">
+                        <h2>¡Trabajemos Juntos!</h2>
+                        <p class="text-muted mb-4">¿Tienes un proyecto, curso, o necesitas apoyo tecnológico? Escríbeme y te responderé a la brevedad.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <span class="contact-icon">📧</span>
+                                <div class="contact-text">
+                                    <span class="label">Correo Eléctronico</span>
+                                    <a href="mailto:bastiascid@gmail.com">bastiascid@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">📱</span>
+                                <div class="contact-text">
+                                    <span class="label">Teléfono / WhatsApp</span>
+                                    <a href="https://wa.me/56983638533" target="_blank">+56 9 8363 8533</a>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-icon">📍</span>
+                                <div class="contact-text">
+                                    <span class="label">Ubicación</span>
+                                    <span>Rancagua, Chile</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('¡Gracias por tu mensaje! Me pondré en contacto contigo pronto.');">
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" required placeholder="Tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo</label>
+                            <input type="email" id="email" required placeholder="tu@correo.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" rows="5" required placeholder="¿En qué te puedo ayudar?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="quote">
+                🌱 "La tecnología no es solo herramientas, es una oportunidad para transformar vidas."
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cristian Bastías Cid. Todos los derechos reservados.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="LinkedIn">In</a>
+                    <a href="https://github.com/bastiascid" target="_blank" aria-label="GitHub">Gh</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
