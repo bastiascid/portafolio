@@ -61,7 +61,7 @@ async function fetchGitHubProjects() {
     if (!projectsContainer) return;
 
     try {
-        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`);
+        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=30`);
         
         if (!response.ok) {
             throw new Error('Error limit API or user not found');
@@ -72,14 +72,16 @@ async function fetchGitHubProjects() {
         // Clear loading message
         projectsContainer.innerHTML = '';
 
-        if (repos.length === 0) {
-            projectsContainer.innerHTML = '<p class="text-muted" style="grid-column: 1 / -1; text-align: center;">No se encontraron proyectos públicos.</p>';
+        // Filter repos: not forks and must have a description
+        const validRepos = repos.filter(repo => !repo.fork && repo.description && repo.description.trim() !== '');
+
+        if (validRepos.length === 0) {
+            projectsContainer.innerHTML = '<p class="text-muted" style="grid-column: 1 / -1; text-align: center;">No se encontraron proyectos públicos con descripción.</p>';
             return;
         }
 
-        repos.forEach(repo => {
-            // Optional: Filter out forks or specific repos if needed
-            if (repo.fork) return;
+        // Show up to 6 projects
+        validRepos.slice(0, 6).forEach(repo => {
 
             const card = document.createElement('a');
             card.href = repo.html_url;
