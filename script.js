@@ -127,3 +127,56 @@ async function fetchGitHubProjects() {
 
 // Fetch on load
 document.addEventListener('DOMContentLoaded', fetchGitHubProjects);
+
+// --- Typewriter Effect ---
+const phrases = ["Ingeniero en Informática", "Docente", "Desarrollador de Sistemas"];
+let currentPhraseIndex = 0;
+let currentCharIndex = 0;
+let isDeleting = false;
+let isEnd = false;
+
+function typeWriter() {
+    const typewriterElement = document.getElementById('typewriter');
+    if (!typewriterElement) return;
+
+    // Get current full phrase
+    const currentPhrase = phrases[currentPhraseIndex];
+
+    if (isDeleting) {
+        // Remove char
+        currentCharIndex--;
+    } else {
+        // Add char
+        currentCharIndex++;
+    }
+
+    // Set text
+    typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex);
+
+    // Initial speed
+    let typeSpeed = 100;
+
+    if (isDeleting) {
+        typeSpeed /= 2; // Delete faster
+    }
+
+    // Handle complete phrase
+    if (!isDeleting && currentCharIndex === currentPhrase.length) {
+        // Pause at end
+        typeSpeed = 2000;
+        isDeleting = true;
+    } else if (isDeleting && currentCharIndex === 0) {
+        isDeleting = false;
+        // Move to next phrase
+        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+        // Pause before typing next
+        typeSpeed = 500;
+    }
+
+    setTimeout(typeWriter, typeSpeed);
+}
+
+// Start typewriter effect after DOM Content is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(typeWriter, 1000);
+});

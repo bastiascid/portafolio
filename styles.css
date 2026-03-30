@@ -2,18 +2,18 @@
 :root {
     /* Colors - Dark aesthetic */
     --bg-color: #0b0f19;
-    --text-color: #e2e8f0;
+    --text-color: #f1f5f9;
     --text-muted: #94a3b8;
     
     /* Accents - Modern Tech Vibe */
     --accent: #3b82f6;      /* Blue */
-    --accent-hover: #2563eb;
-    --secondary: #8b5cf6;   /* Purple */
+    --accent-hover: #60a5fa;
+    --secondary: #a855f7;   /* Purple */
     
     /* Glassmorphism */
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    --glass-bg: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.4);
     
     /* Layout */
     --container-w: 1100px;
@@ -62,6 +62,12 @@ body {
     border-radius: 50%;
     filter: blur(120px);
     opacity: 0.15;
+    animation: breathing 8s ease-in-out infinite alternate;
+}
+
+@keyframes breathing {
+    0% { opacity: 0.15; transform: scale(1); }
+    100% { opacity: 0.25; transform: scale(1.1); }
 }
 
 .orb-1 {
@@ -148,18 +154,19 @@ section {
 /* Glass Card */
 .glass-card {
     background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 2.5rem;
     box-shadow: var(--glass-shadow);
-    transition: transform 0.3s ease, background 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .glass-card:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 15px 45px 0 rgba(0, 0, 0, 0.6);
 }
 
 /* Buttons */
@@ -720,6 +727,23 @@ footer {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Typewriter Cursor */
+.cursor-blink {
+    display: inline-block;
+    width: 3px;
+    background-color: var(--accent);
+    margin-left: 4px;
+    animation: blink 1s step-end infinite;
+}
+.cursor-blink::before {
+    content: '|';
+    color: transparent;
+}
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 /* Scroll Reveals Classes */
