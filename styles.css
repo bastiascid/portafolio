@@ -66,8 +66,9 @@ body {
 }
 
 @keyframes breathing {
-    0% { opacity: 0.15; transform: scale(1); }
-    100% { opacity: 0.25; transform: scale(1.1); }
+    0% { opacity: 0.15; transform: scale(1) translate(0, 0); }
+    50% { opacity: 0.25; transform: scale(1.05) translate(20px, -20px); }
+    100% { opacity: 0.15; transform: scale(1) translate(-20px, 20px); }
 }
 
 .orb-1 {
@@ -157,6 +158,8 @@ section {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid var(--glass-border);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 20px;
     padding: 2.5rem;
     box-shadow: var(--glass-shadow);
@@ -171,7 +174,10 @@ section {
 
 /* Buttons */
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.8rem 2rem;
     border-radius: 30px;
     font-weight: 500;
@@ -207,8 +213,35 @@ section {
     background: rgba(59, 130, 246, 0.1);
 }
 
+.btn-linkedin {
+    background: #0A66C2;
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(10, 102, 194, 0.4);
+}
+
+.btn-linkedin:hover {
+    background: #004182;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(10, 102, 194, 0.6);
+}
+
 .btn-block {
     width: 100%;
+}
+
+.btn-link {
+    color: var(--accent);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-link:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
 }
 
 /* --- Navigation --- */
@@ -301,9 +334,13 @@ section {
 }
 
 .main-title {
-    font-size: 4rem;
+    font-size: 4.5rem;
     margin-bottom: 0.5rem;
     letter-spacing: -1px;
+    background: linear-gradient(to right, #ffffff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 4px 30px rgba(255, 255, 255, 0.1);
 }
 
 .subtitle {
@@ -685,20 +722,34 @@ footer {
 }
 
 .social-links a {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     background: rgba(255,255,255,0.05);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 600;
-    transition: background 0.3s;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--glass-border);
 }
 
 .social-links a:hover {
-    background: var(--accent);
+    transform: translateY(-3px);
+}
+
+.social-links a[aria-label="LinkedIn"]:hover {
+    background: #0A66C2;
     color: #fff;
+    border-color: #0A66C2;
+    box-shadow: 0 5px 15px rgba(10, 102, 194, 0.4);
+}
+
+.social-links a[aria-label="GitHub"]:hover {
+    background: #6e5494;
+    color: #fff;
+    border-color: #6e5494;
+    box-shadow: 0 5px 15px rgba(110, 84, 148, 0.4);
 }
 
 
