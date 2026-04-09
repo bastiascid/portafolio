@@ -180,3 +180,35 @@ function typeWriter() {
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(typeWriter, 1000);
 });
+
+// --- Theme Toggle ---
+const themeToggleBtn = document.getElementById('theme-toggle');
+if (themeToggleBtn) {
+    const icon = themeToggleBtn.querySelector('i');
+    const currentTheme = localStorage.getItem("theme");
+
+    // Initialize Theme
+    if (currentTheme) {
+        document.body.setAttribute('data-theme', currentTheme);
+        if (currentTheme === "light") {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    }
+
+    // Toggle logic
+    themeToggleBtn.addEventListener("click", () => {
+        let theme = document.body.getAttribute('data-theme');
+        if (theme === "light") {
+            document.body.removeAttribute('data-theme');
+            localStorage.setItem("theme", "dark");
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        } else {
+            document.body.setAttribute('data-theme', 'light');
+            localStorage.setItem("theme", "light");
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    });
+}
