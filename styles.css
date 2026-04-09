@@ -64,7 +64,7 @@
 .theme-toggle-btn {
     background: transparent;
     border: none;
-    color: #fff;
+    color: var(--text-color);
     font-size: 1.2rem;
     cursor: pointer;
     transition: color 0.3s ease, transform 0.3s ease;
@@ -92,7 +92,7 @@ html {
 
 body {
     background-color: var(--bg-color);
-    color: #fff;
+    color: var(--text-color);
     font-family: var(--font-body);
     line-height: 1.6;
     overflow-x: hidden;
@@ -360,7 +360,7 @@ section {
     display: block;
     width: 25px;
     height: 2px;
-    background-color: #fff;
+    background-color: var(--text-color);
     margin: 5px 0;
     transition: 0.3s;
 }
@@ -717,7 +717,7 @@ section {
     background: var(--input-bg);
     border: 1px solid var(--glass-border);
     border-radius: 8px;
-    color: #fff;
+    color: var(--text-color);
     font-family: inherit;
     font-size: 1rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
