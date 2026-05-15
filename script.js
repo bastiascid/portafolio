@@ -1,12 +1,9 @@
-// Custom Cursor / Glowing Effect on mouse move (Optional subtle effect)
+// Custom Cursor / Glowing Effect
 document.addEventListener('mousemove', (e) => {
     const orb1 = document.querySelector('.orb-1');
     const orb2 = document.querySelector('.orb-2');
-    
-    // Slow parallax effect for orbs
     const x = e.clientX / window.innerWidth;
     const y = e.clientY / window.innerHeight;
-    
     if (orb1 && orb2) {
         orb1.style.transform = `translate(${x * 50}px, ${y * 50}px)`;
         orb2.style.transform = `translate(-${x * 30}px, -${y * 30}px)`;
@@ -21,194 +18,110 @@ if (mobileMenuBtn && navLinks) {
     mobileMenuBtn.addEventListener('click', () => {
         mobileMenuBtn.classList.toggle('active');
         navLinks.classList.toggle('active');
-        
         let expanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true' || false;
         mobileMenuBtn.setAttribute('aria-expanded', !expanded);
     });
 }
 
-// Close mobile menu when a link is clicked
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
     mobileMenuBtn.classList.remove('active');
     navLinks.classList.remove('active');
 }));
 
-// Scroll Reveal Effects
+// Scroll Reveal
 function reveal() {
     var reveals = document.querySelectorAll(".reveals");
     for (var i = 0; i < reveals.length; i++) {
         var windowHeight = window.innerHeight;
         var elementTop = reveals[i].getBoundingClientRect().top;
-        var elementVisible = 150; // trigger point
-
+        var elementVisible = 150;
         if (elementTop < windowHeight - elementVisible) {
             reveals[i].classList.add("active");
         }
     }
 }
-
-// Attach scroll event
 window.addEventListener("scroll", reveal);
-
-// Initial reveal check
 reveal();
 
-// --- Fetch GitHub Projects ---
-const GITHUB_USERNAME = 'bastiascid'; // Corrected username
+// --- Proyectos Estáticos (Documentación pública, Código privado) ---
+const PROJECTS_DATA = [
+    {
+        name: "La Canasta",
+        description: "Plataforma integral de e-commerce para distribución de alimentos al por mayor en la Región de O'Higgins. Incluye catálogo autogestionable por el administrador mediante LocalStorage, carrito de compras avanzado y un sistema de pedidos optimizado para WhatsApp que facilita la conversión directa con clientes B2B.",
+        tags: ["HTML5", "CSS3", "JavaScript ES6", "LocalStorage"],
+        icon: "🛒",
+        image: "assets/projects/la-canasta.png"
+    },
+    {
+        name: "SmartUrna",
+        description: "Solución de votación electrónica de alta fidelidad diseñada para procesos democráticos transparentes. Implementa un sistema de gestión de usuarios, padrones electorales dinámicos y un motor de escrutinio en tiempo real con visualización de datos mediante gráficos interactivos, garantizando la integridad de cada voto.",
+        tags: ["PHP 8.x", "MySQL", "Chart.js", "Security"],
+        icon: "🗳️",
+        image: "assets/projects/smarturna.png"
+    },
+    {
+        name: "Módulo Mantenciones",
+        description: "Sistema de Planificación de Recursos (ERP) enfocado en el mantenimiento industrial y gestión de flotas. Permite el seguimiento exhaustivo de órdenes de trabajo, control de stock de repuestos, alertas automáticas para mantenimientos preventivos y generación de reportes de eficiencia operativa para la toma de decisiones.",
+        tags: ["PHP", "SQL Server", "Enterprise Arch", "Business Intelligence"],
+        icon: "🛠️",
+        image: "assets/projects/mantenciones.png"
+    },
+    {
+        name: "La Bluesería",
+        description: "Experiencia digital premium desarrollada para una tienda boutique de instrumentos musicales. El proyecto se centra en una estética visual impactante (Dark Mode), micro-interacciones fluidas y un diseño orientado al producto que eleva el valor de marca y mejora significativamente la retención del usuario.",
+        tags: ["Web Design", "Animations", "Responsive Design", "UX/UI"],
+        icon: "🎸",
+        image: "assets/projects/la-blueseria.png"
+    },
+    {
+        name: "Medical Appointments",
+        description: "Sistema robusto de gestión clínica que centraliza la administración de pacientes, disponibilidad de profesionales y fichas médicas electrónicas. Diseñado con una arquitectura escalable, facilita la organización de turnos y mejora la comunicación entre el centro médico y los pacientes.",
+        tags: ["Python", "Django", "PostgreSQL", "Full Stack"],
+        icon: "🏥",
+        image: "assets/projects/medical-appointments.png"
+    },
+    {
+        name: "Appyúdame",
+        description: "Proyecto con impacto social que facilita la conexión entre redes de apoyo y personas vulnerables. La plataforma permite la geolocalización de solicitudes de ayuda, gestión de voluntarios y seguimiento de casos en tiempo real, optimizando la entrega de recursos comunitarios.",
+        tags: ["React Native", "Firebase", "Real-time DB", "Social Impact"],
+        icon: "🤝",
+        image: "assets/projects/appyudame.png"
+    }
+];
 
-async function fetchGitHubProjects() {
+function renderProjects() {
     const projectsContainer = document.getElementById('github-projects');
     if (!projectsContainer) return;
 
-    try {
-        const response = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=30`);
+    projectsContainer.innerHTML = '';
+
+    PROJECTS_DATA.forEach(project => {
+        const card = document.createElement('div');
+        card.className = 'project-card glass-card';
         
-        if (!response.ok) {
-            throw new Error('Error limit API or user not found');
-        }
+        let tagsHTML = project.tags.map(tag => `<span>${tag}</span>`).join('');
 
-        const repos = await response.json();
-        
-        // Clear loading message
-        projectsContainer.innerHTML = '';
-
-        // Filter repos: not forks and must have a description
-        const validRepos = repos.filter(repo => !repo.fork && repo.description && repo.description.trim() !== '');
-
-        if (validRepos.length === 0) {
-            projectsContainer.innerHTML = '<p class="text-muted" style="grid-column: 1 / -1; text-align: center;">No se encontraron proyectos públicos con descripción.</p>';
-            return;
-        }
-
-        // Show up to 6 projects
-        validRepos.slice(0, 6).forEach(repo => {
-
-            const card = document.createElement('a');
-            card.href = repo.html_url;
-            card.target = '_blank';
-            card.className = 'project-card glass-card';
-            card.style.display = 'flex'; // Ensure flex layout like before
-            card.style.textDecoration = 'none';
-
-            // Topics / Language tags
-            let tagsHTML = '';
-            if (repo.language) {
-                tagsHTML += `<span>${repo.language}</span>`;
-            }
-            if (repo.topics && repo.topics.length > 0) {
-                repo.topics.slice(0, 3).forEach(topic => {
-                    tagsHTML += `<span>${topic}</span>`;
-                });
-            }
-
-            card.innerHTML = `
-                <div class="project-content">
-                    <h3>${repo.name.replace(/-/g, ' ').replace(/_/g, ' ')}</h3>
-                    <p>${repo.description || 'Sin descripción disponible.'}</p>
-                    <div class="project-tags">
-                        ${tagsHTML || '<span>GitHub</span>'}
-                    </div>
+        card.innerHTML = `
+            <div class="image-container">
+                <img src="${project.image}" alt="${project.name}" class="project-image" onerror="this.src='https://placehold.co/600x400/0b0f19/e2e8f0?text=${project.name}'">
+            </div>
+            <div class="project-content">
+                <div class="project-header" style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+                    <span style="font-size: 1.5rem;">${project.icon || '💻'}</span>
+                    <h3 style="margin: 0; color: var(--accent);">${project.name}</h3>
                 </div>
-            `;
-
-            projectsContainer.appendChild(card);
-        });
-        
-    } catch (error) {
-        console.error('Error fetching github projects:', error);
-        projectsContainer.innerHTML = `
-            <div class="text-center" style="grid-column: 1 / -1; color: var(--text-muted); padding: 2rem;">
-                <p>No se pudieron cargar los proyectos de GitHub. Por favor, visita el perfil directamente.</p>
-                <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" class="btn btn-outline mt-4">Ver GitHub</a>
+                <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 20px;">${project.description}</p>
+                <div class="project-tags">
+                    ${tagsHTML}
+                </div>
+                <div style="margin-top: auto; padding-top: 20px; font-size: 0.8rem; color: var(--secondary); font-weight: 600; display: flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-lock"></i> REPOSITORIO PRIVADO
+                </div>
             </div>
         `;
-    }
-}
 
-// Fetch on load
-document.addEventListener('DOMContentLoaded', fetchGitHubProjects);
-
-// --- Typewriter Effect ---
-const phrases = ["Ingeniero en Informática", "Docente", "Desarrollador de Sistemas"];
-let currentPhraseIndex = 0;
-let currentCharIndex = 0;
-let isDeleting = false;
-let isEnd = false;
-
-function typeWriter() {
-    const typewriterElement = document.getElementById('typewriter');
-    if (!typewriterElement) return;
-
-    // Get current full phrase
-    const currentPhrase = phrases[currentPhraseIndex];
-
-    if (isDeleting) {
-        // Remove char
-        currentCharIndex--;
-    } else {
-        // Add char
-        currentCharIndex++;
-    }
-
-    // Set text
-    typewriterElement.textContent = currentPhrase.substring(0, currentCharIndex);
-
-    // Initial speed
-    let typeSpeed = 100;
-
-    if (isDeleting) {
-        typeSpeed /= 2; // Delete faster
-    }
-
-    // Handle complete phrase
-    if (!isDeleting && currentCharIndex === currentPhrase.length) {
-        // Pause at end
-        typeSpeed = 2000;
-        isDeleting = true;
-    } else if (isDeleting && currentCharIndex === 0) {
-        isDeleting = false;
-        // Move to next phrase
-        currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
-        // Pause before typing next
-        typeSpeed = 500;
-    }
-
-    setTimeout(typeWriter, typeSpeed);
-}
-
-// Start typewriter effect after DOM Content is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(typeWriter, 1000);
-});
-
-// --- Theme Toggle ---
-const themeToggleBtn = document.getElementById('theme-toggle');
-if (themeToggleBtn) {
-    const icon = themeToggleBtn.querySelector('i');
-    const currentTheme = localStorage.getItem("theme");
-
-    // Initialize Theme
-    if (currentTheme) {
-        document.body.setAttribute('data-theme', currentTheme);
-        if (currentTheme === "light") {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
-    }
-
-    // Toggle logic
-    themeToggleBtn.addEventListener("click", () => {
-        let theme = document.body.getAttribute('data-theme');
-        if (theme === "light") {
-            document.body.removeAttribute('data-theme');
-            localStorage.setItem("theme", "dark");
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
-        } else {
-            document.body.setAttribute('data-theme', 'light');
-            localStorage.setItem("theme", "light");
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
-        }
+        projectsContainer.appendChild(card);
     });
 }
+
+document.addEventListener('DOMContentLoaded', renderProjects);
