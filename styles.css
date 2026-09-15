@@ -280,7 +280,7 @@ a:focus-visible, button:focus-visible {
    ========================================================================== */
 #matrix-bg {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: -1; opacity: 0.12; pointer-events: none;
+    z-index: -1; opacity: 0.45; pointer-events: none;
 }
 
 /* ==========================================================================
@@ -367,4 +367,12 @@ a:focus-visible, button:focus-visible {
     .stat-number { font-size: 3rem !important; }
     .hero-actions { justify-content: center; width: 100%; }
     .btn-editorial { width: 100%; justify-content: center; }
+}
+@media (max-width: 768px) {
+    .section-hero { 
+        padding-top: 100px !important; 
+        padding-bottom: 20px !important; 
+        min-height: auto !important;
+        justify-content: flex-start !important;
+    }
 }

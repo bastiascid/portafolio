@@ -17,7 +17,7 @@ if (canvas) {
         ctx.fillRect(0, 0, width, height);
 
         // Color del texto (Azul profundo sutil para no romper estética)
-        ctx.fillStyle = 'rgba(37, 99, 235, 0.4)'; 
+        ctx.fillStyle = 'rgba(37, 99, 235, 0.95)'; 
         ctx.font = fontSize + 'px monospace';
 
         for (let i = 0; i < drops.length; i++) {
