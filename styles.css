@@ -91,8 +91,14 @@ a:focus-visible, button:focus-visible {
 .massive-title {
     font-size: clamp(3.5rem, 10vw, 9rem);
     font-weight: 900; line-height: 0.9; letter-spacing: -0.04em;
-    margin-bottom: 5vh; color: var(--text-primary); text-transform: uppercase;
+    margin-bottom: 5vh; text-transform: uppercase;
+    background: linear-gradient(135deg, #FFFFFF 0%, #3B82F6 40%, #8B5CF6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: gradientFlow 6s ease infinite;
 }
+@keyframes gradientFlow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
 
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
 .hero-manifesto { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 300; color: var(--text-muted); line-height: 1.5; }
@@ -204,7 +210,12 @@ a:focus-visible, button:focus-visible {
     color: transparent; -webkit-text-stroke: 1px var(--border);
     text-transform: uppercase; transition: var(--transition); cursor: default;
 }
-.tech-cloud span:hover { color: var(--text-primary); -webkit-text-stroke: 0px; transform: scale(1.05); }
+.tech-cloud span:hover { -webkit-text-stroke: 0px; transform: scale(1.05); }
+.tech-cloud span:nth-child(5n+1):hover { color: #3B82F6; } /* Azul */
+.tech-cloud span:nth-child(5n+2):hover { color: #10B981; } /* Verde */
+.tech-cloud span:nth-child(5n+3):hover { color: #8B5CF6; } /* Púrpura */
+.tech-cloud span:nth-child(5n+4):hover { color: #F59E0B; } /* Ámbar */
+.tech-cloud span:nth-child(5n+5):hover { color: #EF4444; } /* Rojo */
 
 /* FORMACION ACADEMICA (Sub-sección) */
 .sub-editorial-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 40px; letter-spacing: -0.02em; }
