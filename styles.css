@@ -328,3 +328,43 @@ a:focus-visible, button:focus-visible {
     .whatsapp-float { bottom: 18px; right: 18px; width: 50px; height: 50px; font-size: 1.5rem; }
     .wa-tooltip { display: none; }
 }
+
+/* ==========================================================================
+   MOBILE RESPONSIVENESS & COLOR FIXES
+   ========================================================================== */
+@media (hover: none) {
+    /* Mostrar colores permanentemente en dispositivos táctiles */
+    .tech-cloud span { -webkit-text-stroke: 0px !important; }
+    .tech-cloud span:nth-child(5n+1) { color: #3B82F6 !important; }
+    .tech-cloud span:nth-child(5n+2) { color: #10B981 !important; }
+    .tech-cloud span:nth-child(5n+3) { color: #8B5CF6 !important; }
+    .tech-cloud span:nth-child(5n+4) { color: #F59E0B !important; }
+    .tech-cloud span:nth-child(5n+5) { color: #EF4444 !important; }
+
+    /* Resaltar proyectos por defecto en móvil */
+    .project-row { 
+        background: linear-gradient(90deg, rgba(37,99,235,0.03) 0%, rgba(139,92,246,0.03) 100%) !important; 
+        border-color: rgba(37,99,235,0.2) !important; 
+    }
+    .proj-link { background: var(--text-primary) !important; color: var(--bg-main) !important; transform: rotate(-45deg) !important; }
+}
+
+@media (hover: hover) {
+    /* Mejorar visibilidad del borde en PC antes de hacer hover */
+    .tech-cloud span { -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25); }
+}
+
+/* Ajustes estructurales agresivos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .massive-title { font-size: clamp(2.2rem, 10vw, 4rem) !important; line-height: 1.1; margin-bottom: 3vh; }
+    .section-editorial { padding: 60px 0 !important; }
+    .section-header { margin-bottom: 40px !important; }
+    .section-title { font-size: 1.8rem !important; }
+    .tech-cloud span { font-size: clamp(1.4rem, 8vw, 2.5rem) !important; }
+    .massive-contact { font-size: clamp(2.2rem, 10vw, 3.5rem) !important; }
+    .project-row { padding: 32px 0 !important; }
+    .manifesto-stats { padding-top: 24px; gap: 24px; }
+    .stat-number { font-size: 3rem !important; }
+    .hero-actions { justify-content: center; width: 100%; }
+    .btn-editorial { width: 100%; justify-content: center; }
+}
