@@ -18,7 +18,7 @@ if (canvas) {
 
         // Color del texto (Azul profundo sutil para no romper estética)
         ctx.fillStyle = 'rgba(37, 99, 235, 0.95)'; 
-        ctx.font = fontSize + 'px monospace';
+        ctx.font = 'bold ' + fontSize + 'px monospace';
 
         for (let i = 0; i < drops.length; i++) {
             const text = chars[Math.floor(Math.random() * chars.length)];
