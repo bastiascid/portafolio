@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carnes O'Higgins - Distribuidora de Carnes Premium</title>
+  
+  <!-- SEO & Meta Tags -->
+  <meta name="description" content="Carnes O'Higgins, distribuidora de carnes premium con más de 30 años de experiencia. Vacuno, cerdo y aves con cadena de frío garantizada." />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #4a3728;
+      --bg-card: #ffffff;
+      --bg-main: #f5f0eb;
+      --gold-primary: #b8956a;
+      --gold-hover: #8b6f47;
+      --text-main: #4a3728;
+      --text-muted: #6b5c51;
+      --border-color: rgba(184, 149, 106, 0.3);
+      --font-heading: 'Cinzel', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ---- HEADER & NAV ---- */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(245, 240, 235, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(74, 55, 40, 0.05);
+      transition: all 0.4s ease;
+    }
+
+    header.scrolled {
+      padding: 0.5rem 0;
+      background: rgba(245, 240, 235, 0.98);
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      transition: padding 0.4s ease;
+    }
+
+    header.scrolled nav {
+      padding: 1rem 2rem;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-text {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold-primary);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--gold-primary);
+      bottom: -6px;
+      left: 0;
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-primary);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--gold-primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    /* ---- HERO SECTION ---- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 2rem;
+      background: linear-gradient(to bottom, rgba(245, 240, 235, 0.7), var(--bg-main)), url('background.png') center/cover no-repeat;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at center, transparent 0%, rgba(245, 240, 235, 0.9) 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .hero-image-stamp {
+      max-width: 150px;
+      margin-bottom: 2rem;
+      filter: drop-shadow(0 5px 15px rgba(74, 55, 40, 0.2));
+    }
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 4rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      color: var(--text-main);
+    }
+
+    .hero h1 span {
+      color: var(--gold-primary);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: white;
+      background: var(--gold-primary);
+      border: 2px solid var(--gold-primary);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .btn:hover {
+      background: var(--gold-hover);
+      border-color: var(--gold-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(184, 149, 106, 0.3);
+    }
+
+    /* ---- SECTIONS GENERIC ---- */
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ---- PRODUCTOS ---- */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .product-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 3rem 2rem;
+      text-align: center;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(74, 55, 40, 0.05);
+    }
+
+    .product-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 3px;
+      background: var(--gold-primary);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+      transform-origin: left;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(74, 55, 40, 0.1);
+      border-color: var(--gold-primary);
+    }
+
+    .product-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .product-icon {
+      font-size: 3.5rem;
+      color: var(--gold-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .product-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--text-main);
+    }
+
+    .product-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    /* ---- CARACTERÍSTICAS ---- */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      margin-top: 5rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 5rem;
+    }
+
+    .feature-item {
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .feature-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 1.5rem;
+      background: rgba(184, 149, 106, 0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      color: var(--gold-primary);
+      transition: all 0.3s;
+    }
+
+    .feature-item:hover .feature-icon {
+      background: var(--gold-primary);
+      color: white;
+      transform: rotate(10deg) scale(1.1);
+    }
+
+    .feature-item h4 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .feature-item p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ---- NOSOTROS ---- */
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image-wrapper {
+      position: relative;
+    }
+
+    .about-image {
+      width: 100%;
+      height: auto;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: 20px 20px 0 rgba(184, 149, 106, 0.1);
+    }
+
+    .about-text h3 {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: var(--gold-primary);
+    }
+
+    .about-text p {
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+      color: var(--text-muted);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(74, 55, 40, 0.05);
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      color: var(--gold-primary);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-item p {
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* ---- CONTACTO ---- */
+    .contact {
+      background: linear-gradient(to bottom, rgba(74, 55, 40, 0.9), rgba(74, 55, 40, 0.95)), url('carnesohiggins_fondo_final_final.png') center/cover fixed;
+      position: relative;
+      color: white;
+    }
+
+    .contact-container {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+    }
+    
+    .contact .section-header h2 {
+        color: white;
+    }
+    
+    .contact .section-header p {
+        color: var(--gold-primary);
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      margin: 3rem 0;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-icon {
+      font-size: 2.5rem;
+      color: var(--gold-primary);
+    }
+
+    .contact-item p, .contact-item a {
+      font-size: 1.2rem;
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .contact-item a:hover {
+      color: var(--gold-primary);
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--bg-dark);
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(184, 149, 106, 0.2);
+    }
+
+    footer p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-gold {
+      color: var(--gold-primary);
+      font-family: var(--font-heading);
+    }
+
+    /* ---- ANIMATIONS ---- */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease-out;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---- MOBILE RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      .about-content { grid-template-columns: 1fr; }
+      .about-image-wrapper { margin-bottom: 2rem; }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.8rem; }
+      .nav-links {
+        position: fixed;
+        top: 0; right: -100%;
+        width: 250px; height: 100vh;
+        background: var(--bg-card);
+        flex-direction: column;
+        padding: 6rem 2rem;
+        transition: right 0.4s ease;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      }
+      .nav-links.nav-active { right: 0; }
+      .menu-toggle { display: block; z-index: 1001; }
+      
+      .menu-toggle.active i::before {
+        content: "\f00d"; /* fontawesome X */
+      }
+
+      .stats { grid-template-columns: 1fr; gap: 1rem; }
+      .contact-info { flex-direction: column; gap: 2rem; align-items: center; }
+    }
+  </style>
+</head>
+
+<body>
+  <header id="main-header">
+    <nav>
+      <div class="logo-container">
+        <a href="#inicio" style="text-decoration: none;">
+            <span class="logo-text">Carnes O'Higgins</span>
+        </a>
+      </div>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </nav>
+  </header>
+
+  <section id="inicio" class="hero">
+    <div class="hero-content">
+      <img src="carnesohiggins_fondo_final_final.png" alt="Sello de Calidad" class="hero-image-stamp" style="border-radius: 50%; border: 2px solid var(--gold-primary);">
+      <h1>Excelencia en <span>Carnes Premium</span></h1>
+      <p>Abasteciendo a la región con los mejores cortes seleccionados. Tradición, frescura y calidad garantizada por más de 30 años.</p>
+      <a href="#contacto" class="btn">Solicitar Cotización</a>
+    </div>
+  </section>
+
+  <section id="productos" class="section">
+    <div class="section-header reveal">
+      <h2>Nuestros Productos</h2>
+      <p>Seleccionamos cuidadosamente cada corte para asegurar el máximo estándar de sabor y terneza para su negocio.</p>
+    </div>
+
+    <div class="products">
+      <div class="product-card reveal">
+        <i class="fa-solid fa-cow product-icon"></i>
+        <h3>Vacuno Premium</h3>
+        <p>Cortes de primera calidad: Lomo vetado, asado de tira, entraña y más de 50 variedades con marmoleo perfecto.</p>
+      </div>
+
+      <div class="product-card reveal">
+        <i class="fa-solid fa-piggy-bank product-icon"></i>
+        <h3>Cerdo Selecto</h3>
+        <p>Carne de cerdo fresca, procesada bajo estrictas normas de higiene. Ideal para restaurantes y alta cocina.</p>
+      </div>
+
+      <div class="product-card reveal">
+        <i class="fa-solid fa-drumstick-bite product-icon"></i>
+        <h3>Aves Frescas</h3>
+        <p>Pollo y pavo provenientes de granjas certificadas. Productos del día para asegurar abastecimiento ininterrumpido.</p>
+      </div>
+    </div>
+
+    <div class="features">
+      <div class="feature-item reveal">
+        <div class="feature-icon"><i class="fa-solid fa-snowflake"></i></div>
+        <h4>Cadena de Frío</h4>
+        <p>Temperatura controlada 24/7 en almacenamiento y transporte.</p>
+      </div>
+
+      <div class="feature-item reveal">
+        <div class="feature-icon"><i class="fa-solid fa-certificate"></i></div>
+        <h4>Certificaciones</h4>
+        <p>Cumplimos con todos los protocolos y resoluciones sanitarias.</p>
+      </div>
+
+      <div class="feature-item reveal">
+        <div class="feature-icon"><i class="fa-solid fa-truck-fast"></i></div>
+        <h4>Distribución Ágil</h4>
+        <p>Entregas oportunas a su local en vehículos refrigerados.</p>
+      </div>
+
+      <div class="feature-item reveal">
+        <div class="feature-icon"><i class="fa-solid fa-headset"></i></div>
+        <h4>Atención Personalizada</h4>
+        <p>Asesoría en compras y atención rápida a sus requerimientos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="nosotros" class="section">
+    <div class="about-content">
+      <div class="about-image-wrapper reveal">
+        <img src="background.png" alt="Bodega Carnes O'Higgins" class="about-image" />
+      </div>
+      <div class="about-text reveal">
+        <h3>El Sabor de la Experiencia</h3>
+        <p>Somos una empresa familiar devenida en una de las distribuidoras más confiables de la región. Nuestro enfoque es simple: entregar carne de primera calidad, en el momento exacto que nuestros clientes lo necesitan.</p>
+        <p>Trabajamos de la mano con los mejores productores, asegurando la trazabilidad de cada corte. Atendemos a hoteles, restaurantes, casinos y carnicerías que no transan cuando se trata del sabor y la terneza.</p>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat-item reveal">
+        <div class="stat-number">30+</div>
+        <p>Años de Trayectoria</p>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number">500+</div>
+        <p>Clientes Satisfechos</p>
+      </div>
+      <div class="stat-item reveal">
+        <div class="stat-number">100%</div>
+        <p>Calidad Garantizada</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="section contact">
+    <div class="contact-container reveal">
+      <div class="section-header">
+        <h2 style="color: white; margin-bottom: 0.5rem;">Comencemos a Trabajar Juntos</h2>
+        <p style="color: var(--gold-primary);">Cotice con nosotros y eleve el estándar de su negocio</p>
+      </div>
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <i class="fa-solid fa-location-dot contact-icon"></i>
+          <p>Camino Copequén 444, Coinco</p>
+        </div>
+
+        <div class="contact-item">
+          <i class="fa-solid fa-envelope contact-icon"></i>
+          <a href="mailto:ventas@carnesohiggins.cl">ventas@carnesohiggins.cl</a>
+        </div>
+        
+        <div class="contact-item">
+            <i class="fa-solid fa-phone contact-icon"></i>
+            <a href="tel:+56900000000">Contáctenos hoy</a>
+        </div>
+      </div>
+
+      <a href="mailto:ventas@carnesohiggins.cl" class="btn" style="margin-top: 2rem;">Enviar Mensaje Directo</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; <span id="year"></span> <span class="footer-gold">Carnes O'Higgins</span>. Todos los derechos reservados.</p>
+    <p>Distribuidora de Carnes Premium</p>
+    <p style="margin-top: 1rem; font-size: 0.85rem;">
+      Desarrollado por <a href="https://bastiascid.github.io/portafolio/#" target="_blank" rel="noopener noreferrer" style="color: var(--gold-primary); text-decoration: none; font-weight: bold; transition: opacity 0.3s;" onmouseover="this.style.opacity=0.8" onmouseout="this.style.opacity=1">Cristian Bastias Cid</a>
+    </p>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Header scroll effect
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    const links = document.querySelectorAll('.nav-links li a');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('nav-active');
+      menuToggle.classList.toggle('active');
+    });
+
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('nav-active');
+        menuToggle.classList.remove('active');
+      });
+    });
+
+    // Reveal elements on scroll
+    function reveal() {
+      var reveals = document.querySelectorAll('.reveal');
+      for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 100;
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add('active');
+        }
+      }
+    }
+    window.addEventListener('scroll', reveal);
+    reveal(); // trigger on load
+  </script>
+</body>
+</html>
